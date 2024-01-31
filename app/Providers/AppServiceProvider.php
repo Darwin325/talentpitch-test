@@ -3,7 +3,9 @@
 namespace App\Providers;
 
 use App\Services\ChallengeService;
+use App\Services\CompanyService;
 use App\Services\Contracts\IChallengeService;
+use App\Services\Contracts\ICompanyService;
 use App\Services\Contracts\IUserService;
 use App\Services\UserService;
 use Illuminate\Support\ServiceProvider;
@@ -13,6 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public array $bindings = [
         IUserService::class => UserService::class,
         IChallengeService::class => ChallengeService::class,
+        ICompanyService::class => CompanyService::class,
     ];
 
     /**
