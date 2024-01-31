@@ -1,11 +1,12 @@
 <?php
 
+
 describe('UserTestService', function () {
 
     beforeEach(function () {
-       $this->userService = $this->app->make(\App\Services\Contracts\IUserService::class);
-         \Illuminate\Support\Facades\Artisan::call('migrate:refresh');
-         \App\Models\User::factory()->create();
+        $this->userService = $this->app->make(\App\Services\Contracts\IUserService::class);
+        \Illuminate\Support\Facades\Artisan::call('migrate:refresh');
+        \App\Models\User::factory(3)->create();
     });
 
     it('test get all users', function () {
@@ -37,7 +38,6 @@ describe('UserTestService', function () {
     });
 
     it('test get user by id', function () {
-        $this->assertDatabaseCount(\App\Models\User::class, 1);
         $user = $this->userService->getById(1);
         $this->assertModelExists($user);
     });
@@ -70,8 +70,7 @@ describe('UserTestService', function () {
     });
 
     it('test delete user', function () {
-        $countUsers = \App\Models\User::query()->count();
-        $this->userService->delete(1);
-        $this->assertDatabaseCount(\App\Models\User::class, $countUsers - 1);
+        $user = $this->userService->delete(1);
+        $this->assertSoftDeleted($user);
     });
 });

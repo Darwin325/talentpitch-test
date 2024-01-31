@@ -34,6 +34,6 @@ class UserService implements IUserService
     public function delete(int|string $id): bool|array|Model
     {
         $user = User::query()->findOrFail($id);
-        return $user->delete();
+        return tap($user)->delete();
     }
 }
