@@ -3,10 +3,11 @@
 namespace App\Services\Contracts;
 
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface IUserService
 {
-    public function getAll(): array;
+    public function getAll(): LengthAwarePaginator;
 
     public function getById(string $id): Model|array;
 

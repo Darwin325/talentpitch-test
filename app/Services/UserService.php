@@ -5,13 +5,14 @@ namespace App\Services;
 use App\Models\User;
 use App\Services\Contracts\IUserService;
 use Illuminate\Database\Eloquent\Model;
+use \Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 class UserService implements IUserService
 {
 
-    public function getAll(): array
+    public function getAll(): LengthAwarePaginator
     {
-        return User::all()->toArray();
+        return User::query()->paginate(10);
     }
 
     public function getById(string | int $id): Model|array

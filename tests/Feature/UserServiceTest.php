@@ -10,7 +10,12 @@ describe('UserTestService', function () {
 
     it('test get all users', function () {
         $users = $this->userService->getAll();
-        expect($users)->toBeArray();
+        // paginator instance
+        $this->assertInstanceOf(\Illuminate\Contracts\Pagination\LengthAwarePaginator::class, $users);
+        // check if the user is in the paginator
+        $this->assertModelExists($users->first());
+        // check if is a collection
+        $this->assertInstanceOf(\Illuminate\Database\Eloquent\Collection::class, $users->getCollection());
     });
 
     it('test create user', function () {
