@@ -3,7 +3,7 @@
 describe('ChallengeServiceTest', function () {
     beforeEach(function () {
         $this->challengeService = $this->app->make(\App\Services\Contracts\IChallengeService::class);
-        \Illuminate\Support\Facades\Artisan::call('migrate:refresh');
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh');
         \App\Models\User::factory(1)->create();
         \App\Models\Challenge::factory(3)->create();
     });

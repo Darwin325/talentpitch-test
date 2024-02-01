@@ -5,7 +5,7 @@ use Illuminate\Testing\Fluent\AssertableJson;
 describe('UserController', function () {
 
     beforeEach(function () {
-        \Illuminate\Support\Facades\Artisan::call('migrate:refresh');
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh');
         \App\Models\User::factory(15)->create();
     });
 

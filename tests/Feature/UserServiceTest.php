@@ -5,7 +5,7 @@ describe('UserTestService', function () {
 
     beforeEach(function () {
         $this->userService = $this->app->make(\App\Services\Contracts\IUserService::class);
-        \Illuminate\Support\Facades\Artisan::call('migrate:refresh');
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh');
         \App\Models\User::factory(3)->create();
     });
 
@@ -55,7 +55,7 @@ describe('UserTestService', function () {
         expect($user->name)->toBe($newName);
     })->with([
         [
-            fn()=> $this->userService->update(1, [
+            fn() => $this->userService->update(1, [
                 'name' => 'Test User Updated',
             ]),
             'Test User Updated'

@@ -4,7 +4,7 @@ describe('CompanyServiceTest', function () {
     beforeEach(function () {
         $this->companyService = $this->app->make
         (\App\Services\Contracts\ICompanyService::class);
-        \Illuminate\Support\Facades\Artisan::call('migrate:refresh');
+        \Illuminate\Support\Facades\Artisan::call('migrate:fresh');
         \App\Models\User::factory(1)->create();
         \App\Models\Company::factory(3)->create();
     });
