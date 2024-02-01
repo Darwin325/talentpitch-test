@@ -35,7 +35,7 @@ describe('RelationsTest', function () {
 
     it('Program model should have a morph relation with User model', function () {
         $program = \App\Models\Program::factory()->create();
-        expect($program->user())->toBeInstanceOf(MorphToMany::class);
+        expect($program->users())->toBeInstanceOf(MorphToMany::class);
     });
 
     it('Program should add a challenge', function () {
@@ -81,8 +81,8 @@ describe('RelationsTest', function () {
     it('Program should add a user', function () {
         $program = \App\Models\Program::factory()->create();
         $user = \App\Models\User::factory()->create();
-        $program->user()->attach($user);
-        $pivot = $program->user()->find($user->id)->pivot;
+        $program->users()->attach($user);
+        $pivot = $program->users()->find($user->id)->pivot;
         expect($pivot->programable_id)->toBe($user->id);
     });
 });

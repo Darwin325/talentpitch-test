@@ -20,7 +20,8 @@ class Program extends Model
 
     public function companies()
     {
-        return $this->morphedByMany(Company::class, 'programable');
+        return $this->morphedByMany(Company::class, 'programable')
+            ->withTimestamps();
     }
 
     public function challenges()
@@ -29,7 +30,7 @@ class Program extends Model
             ->withTimestamps();
     }
 
-    public function user()
+    public function users()
     {
         return $this->morphedByMany(User::class, 'programable')
             ->withTimestamps();

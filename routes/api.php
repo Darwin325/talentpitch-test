@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProgramChallengeController;
+use App\Http\Controllers\ProgramCompanyController;
 use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\ProgramUserController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,3 +29,12 @@ Route::apiResource('users', UserController::class);
 Route::apiResource('challenges', ChallengeController::class);
 Route::apiResource('companies', CompanyController::class);
 Route::apiResource('programs', ProgramController::class);
+
+Route::apiResource('programs.companies', ProgramCompanyController::class)
+    ->only(['index', 'store']);
+
+Route::apiResource('programs.challenges', ProgramChallengeController::class)
+    ->only(['index', 'store']);
+
+Route::apiResource('programs.users', ProgramUserController::class)
+    ->only(['index', 'store']);
