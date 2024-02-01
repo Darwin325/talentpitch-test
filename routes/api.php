@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AiGeneratorController;
 use App\Http\Controllers\ChallengeController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProgramChallengeController;
@@ -38,3 +39,6 @@ Route::apiResource('programs.challenges', ProgramChallengeController::class)
 
 Route::apiResource('programs.users', ProgramUserController::class)
     ->only(['index', 'store']);
+
+// Llenar las tablas con datos generados por IA
+Route::get('/ai/{table}', [AiGeneratorController::class, 'generable']);
