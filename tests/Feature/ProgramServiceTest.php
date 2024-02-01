@@ -74,8 +74,7 @@ describe('CompanyServiceTest', function () {
     });
 
     it('should delete a program', function () {
-        $countPrograms = \App\Models\Program::query()->count();
         $program = $this->programService->delete(1);
-        $this->assertDatabaseCount(\App\Models\Program::class, $countPrograms - 1);
+        $this->assertSoftDeleted($program);
     });
 });
