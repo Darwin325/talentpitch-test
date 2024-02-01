@@ -16,4 +16,10 @@ class Challenge extends Model
         'points',
         'user_id',
     ];
+
+    public function programs()
+    {
+        return $this->morphToMany(Program::class, 'programable')
+            ->withTimestamps();
+    }
 }

@@ -16,4 +16,10 @@ class Company extends Model
         'website',
         'user_id',
     ];
+
+    public function programs()
+    {
+        return $this->morphToMany(Program::class, 'programable')
+            ->withTimestamps();
+    }
 }
