@@ -22,4 +22,9 @@ class Challenge extends Model
         return $this->morphToMany(Program::class, 'programable')
             ->withTimestamps();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

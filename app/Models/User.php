@@ -49,4 +49,14 @@ class User extends Authenticatable
         return $this->morphToMany(Program::class, 'programable')
             ->withTimestamps();
     }
+
+    public function companies()
+    {
+        return $this->hasMany(Company::class);
+    }
+
+    public function challenges()
+    {
+        return $this->hasMany(Challenge::class);
+    }
 }
