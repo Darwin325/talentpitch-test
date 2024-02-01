@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\ChallengeController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProgramController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('users', \App\Http\Controllers\UserController::class);
-Route::apiResource('challenges', \App\Http\Controllers\ChallengeController::class);
-Route::apiResource('companies', \App\Http\Controllers\CompanyController::class);
+Route::apiResource('users', UserController::class);
+Route::apiResource('challenges', ChallengeController::class);
+Route::apiResource('companies', CompanyController::class);
+Route::apiResource('programs', ProgramController::class);
