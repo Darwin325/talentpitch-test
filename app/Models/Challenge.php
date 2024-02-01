@@ -14,5 +14,6 @@ class Challenge extends Model
         'name',
         'description',
         'points',
+        'user_id',
     ];
 }

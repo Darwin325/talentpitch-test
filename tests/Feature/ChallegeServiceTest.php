@@ -4,6 +4,7 @@ describe('ChallengeServiceTest', function () {
     beforeEach(function () {
         $this->challengeService = $this->app->make(\App\Services\Contracts\IChallengeService::class);
         \Illuminate\Support\Facades\Artisan::call('migrate:refresh');
+        \App\Models\User::factory(1)->create();
         \App\Models\Challenge::factory(3)->create();
     });
 
@@ -22,7 +23,8 @@ describe('ChallengeServiceTest', function () {
         $challenge = $this->challengeService->create([
             'name' => 'Test Challenge',
             'description' => "Test Description",
-            'points' => 44
+            'points' => 44,
+            'user_id' => 1
         ]);
         $this->assertModelExists($challenge);
         $this->assertDatabaseCount(\App\Models\Challenge::class, $countChallenges + 1);

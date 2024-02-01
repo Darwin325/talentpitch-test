@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,7 @@ class ChallengeFactory extends Factory
             'name' => $this->faker->streetName,
             'description' => $this->faker->text,
             'points' => $this->faker->numberBetween(1, 100),
+            'user_id' => User::query()->inRandomOrder()->first()->id,
         ];
     }
 }
