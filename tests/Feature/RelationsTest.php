@@ -8,24 +8,34 @@ describe('RelationsTest', function () {
         $this->artisan('db:seed');
     });
 
-    it('Program model should morph relation with Challenge model', function () {
+    it('Program model should have a morph relation with Challenge model', function () {
         $program = \App\Models\Program::factory()->create();
         expect($program->challenges())->toBeInstanceOf(MorphToMany::class);
     });
 
-    it('Program model should morph relation with Company model', function () {
+    it('Program model should have a morph relation with Company model', function () {
         $program = \App\Models\Program::factory()->create();
         expect($program->companies())->toBeInstanceOf(MorphToMany::class);
     });
 
-    it('Challenge model should morph relation with Program model', function () {
+    it('Challenge model should have a morph relation with Program model', function () {
         $challenge = \App\Models\Challenge::factory()->create();
         expect($challenge->programs())->toBeInstanceOf(MorphToMany::class);
     });
 
-    it('Company model should morph relation with Program model', function () {
+    it('Company model should have a morph relation with Program model', function () {
         $company = \App\Models\Company::factory()->create();
         expect($company->programs())->toBeInstanceOf(MorphToMany::class);
+    });
+
+    it('User model should have a morph relation with Program model', function () {
+        $user = \App\Models\User::factory()->create();
+        expect($user->programs())->toBeInstanceOf(MorphToMany::class);
+    });
+
+    it('Program model should have a morph relation with User model', function () {
+        $program = \App\Models\Program::factory()->create();
+        expect($program->user())->toBeInstanceOf(MorphToMany::class);
     });
 
     it('Program should add a challenge', function () {
@@ -58,5 +68,21 @@ describe('RelationsTest', function () {
         $company->programs()->attach($program);
         $pivot = $company->programs()->find($program->id)->pivot;
         expect($pivot->programable_id)->toBe($program->id);
+    });
+
+    it('User should add a program', function () {
+        $user = \App\Models\User::factory()->create();
+        $program = \App\Models\Program::factory()->create();
+        $user->programs()->attach($program);
+        $pivot = $user->programs()->find($program->id)->pivot;
+        expect($pivot->programable_id)->toBe($program->id);
+    });
+
+    it('Program should add a user', function () {
+        $program = \App\Models\Program::factory()->create();
+        $user = \App\Models\User::factory()->create();
+        $program->user()->attach($user);
+        $pivot = $program->user()->find($user->id)->pivot;
+        expect($pivot->programable_id)->toBe($user->id);
     });
 });

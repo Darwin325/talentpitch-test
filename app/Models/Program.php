@@ -28,4 +28,10 @@ class Program extends Model
         return $this->morphedByMany(Challenge::class, 'programable')
             ->withTimestamps();
     }
+
+    public function user()
+    {
+        return $this->morphedByMany(User::class, 'programable')
+            ->withTimestamps();
+    }
 }
